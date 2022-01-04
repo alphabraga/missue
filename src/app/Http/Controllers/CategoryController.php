@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use stdClass;
 
 class CategoryController extends Controller
 {
@@ -14,17 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        dd('wwwwwwwwwww');
-    }
+        $categories = Category::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        dd($request->all());
+        return response()->json($categories);
     }
 
     /**
@@ -35,7 +28,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category($request->json()->all());
+
+        $category->save();
+
+        return response()->json($category);
     }
 
     /**
@@ -46,18 +43,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
+        return response()->json($category);
     }
 
     /**
@@ -69,7 +55,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->fill($request->json()->all())->save();
+
+        return response()->json($category);
     }
 
     /**
@@ -80,6 +68,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return response()->json(new stdClass);
     }
 }
