@@ -1,0 +1,12 @@
+php:
+  build: ./
+  ports:
+    - "8082:80"
+  volumes:
+    - ./src:/src
+dbadmin:
+  image: acttaiwan/phpliteadmin
+  volumes:
+    - ./src/database/database.sqlite:/src/database/database.sqlite
+  ports:
+    - "2015:2015"
