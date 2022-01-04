@@ -17,8 +17,18 @@ Minimum dependencies as posible
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+Clone the repo
+
+    git clone git@github.com:alphabraga/missue.git
+
+Run a docker container
+
+    sudo docker-composer up --build
+
+
+Access from your browser
+
+    localhost:8082
 
 ### Executing program
 
